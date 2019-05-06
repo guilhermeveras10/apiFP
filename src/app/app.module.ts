@@ -23,10 +23,12 @@ import { TorcedoresInfoPage } from '../pages/torcedores-info/torcedores-info';
 
 import { IncluirAulaPage } from '../pages/incluir-aula/incluir-aula';
 import { ModulosPage } from '../pages/modulos/modulos';
+import { AulasPage } from '../pages/aulas/aulas';
 
 @NgModule({
   declarations: [
     MyApp,
+    AulasPage,
     TorcedoresInfoPage,
     IncluirCursoPage,
     ModulosPage,
@@ -50,6 +52,7 @@ import { ModulosPage } from '../pages/modulos/modulos';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    AulasPage,
     TorcedoresInfoPage,
     TorcedoresPage,
     IncluirCursoPage,

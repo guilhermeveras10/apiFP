@@ -7,6 +7,7 @@ import { NoticiasPage } from '../pages/noticias/noticias';
 import { TorcedoresPage } from '../pages/torcedores/torcedores';
 import * as firebase from 'firebase';
 import { ModulosPage } from '../pages/modulos/modulos';
+import { AulasPage } from '../pages/aulas/aulas';
 
 @Component({
   templateUrl: 'app.html'
@@ -26,14 +27,7 @@ export class MyApp {
       { title: 'Usuários', component: TorcedoresPage },
       { title: 'Curso principal', component: NoticiasPage },
       { title: 'Módulos', component: ModulosPage },
-      // { title: 'Artilheiros', component: ArtilheirosPage },
-      // { title: 'Enquetes', component: EnquetesPage },
-      // { title: 'Sorteios', component: SorteiosPage },
-      // { title: 'Vídeos', component: VideosPage },
-      // { title: 'Tabelas', component: TimesPage },
-      // { title: 'Produtos de pontos', component: ProdutosPontosPage },
-      // { title: 'Produtos da loja', component: ProdutosLojaPage },
-      // { title: 'Jogos', component: JogosPage }
+      { title: 'Aulas', component: AulasPage }
     ];
 
   }

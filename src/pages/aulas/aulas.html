@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-navbar color="dark">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Aulas</ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content padding>
+    <table>
+      <thead>
+        <th>Título</th>
+        <th>Subtitulo</th>
+        <th>Descrição</th>
+        <th>Ações</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let torcedor of torcedores">
+          <td>{{torcedor.titulo}}</td>
+          <td>{{torcedor.subtitulo}}</td>
+          <td>{{torcedor.descricao}}</td>
+          <td>
+            <a href="#" (click)="delete(torcedor.key)">Deletar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ion-content>
+  
