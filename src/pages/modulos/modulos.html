@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Módulo</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <table>
+    <thead>
+      <th>Foto</th>
+      <th>Título</th>
+      <th>Etapa</th>
+      <th>Ações</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let torcedor of torcedores">
+        <td>
+          <img [src]="torcedor.url">
+        </td>
+        <td>{{torcedor.titulo}}</td>
+        <td>{{torcedor.etapa}}</td>
+        <td>
+          <a href="#" (click)="incluir(torcedor.key)">Incluir aula</a>
+          <br>
+          <a href="#" (click)="delete(torcedor.key)">Deletar modulo</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ion-content>

@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { ModalController , NavController, NavParams, LoadingController, AlertController, ToastController, IonicPage } from 'ionic-angular';
 import * as firebase from 'firebase';
-import { IncluirCursoPage } from '../incluir-curso/incluir-curso';
 
 /**
- * Generated class for the NoticiasPage page.
+ * Generated class for the IncluirAulaPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -12,10 +11,10 @@ import { IncluirCursoPage } from '../incluir-curso/incluir-curso';
 
 @IonicPage()
 @Component({
-  selector: 'page-noticias',
-  templateUrl: 'noticias.html',
+  selector: 'page-incluir-aula',
+  templateUrl: 'incluir-aula.html',
 })
-export class NoticiasPage {
+export class IncluirAulaPage {
 
   noticia: any = {};
   noticias: any = [];
@@ -29,7 +28,7 @@ export class NoticiasPage {
 
   save() {
     this.upload();
-    firebase.database().ref('cursoPrincipal/').push().update(this.noticia).then(data => {
+    firebase.database().ref('aulas/').push().update(this.noticia).then(data => {
       this.displayToast("Upado com sucesso")
     });
   }
@@ -43,7 +42,7 @@ export class NoticiasPage {
     loading.present();
 
     for (let selectedFile of [(<HTMLInputElement>document.getElementById('imgNoticia')).files[0]]) {
-      let path = '/cursoPrincipal/' + Date.now() + `${selectedFile.name}`;
+      let path = '/aulas/' + Date.now() + `${selectedFile.name}`;
       let iRef = storageRef.child(path);
       iRef.put(selectedFile).then((snapshot) => {
         loading.dismiss();
@@ -55,7 +54,7 @@ export class NoticiasPage {
   }
 
   getAllNoticias() {
-    firebase.database().ref('cursoPrincipal').on('value', requests => {
+    firebase.database().ref('aulas').on('value', requests => {
       let tmp = [];
       requests.forEach(request => {
         tmp.push({ key: request.key, ...request.val() });
@@ -67,13 +66,5 @@ export class NoticiasPage {
 
   displayToast(message) {
     this.toastCtrl.create({ duration: 2000, message }).present();
-  }
-
-  delete(id){
-    firebase.database().ref('cursoPrincipal/'+id).remove();
-  }
-
-  incluir(key){
-    this.modalCtrl.create(IncluirCursoPage, {key}).present();
   }
 }

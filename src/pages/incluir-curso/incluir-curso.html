@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{torcedor.nome}}</ion-title>
+    <ion-buttons end>
+      <button ion-button clear (click)="close()">Fechar</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div style="text-align: center;">
+    <h1>Escolher imagem</h1>
+    <img *ngIf="noticia.url" src="{{ noticia.url }}" style="width:50px;height:50px;" (click)="chooseFile()">
+    <form ngNoForm>
+      <input id="imgModulo" name="file" type="file" (change)="upload()">
+    </form>
+  </div>
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Nome do módulo </ion-label>
+      <ion-input type="text" [(ngModel)]="noticia.titulo"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Qual etapa ?</ion-label>
+      <ion-input type="text" [(ngModel)]="noticia.etapa"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Descrição do módulo</ion-label>
+      <ion-textarea [(ngModel)]="noticia.descricao"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <button ion-button block (click)="save()">Salvar</button>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -7,6 +7,7 @@ import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { IncluirCursoPage } from '../pages/incluir-curso/incluir-curso';
 import { TorcedoresPage } from '../pages/torcedores/torcedores';
 import { NoticiasPage } from '../pages/noticias/noticias';
 import { ArtilheirosPage } from '../pages/artilheiros/artilheiros';
@@ -20,11 +21,17 @@ import { VideosPage } from '../pages/videos/videos';
 import { TimesPage } from '../pages/times/times';
 import { TorcedoresInfoPage } from '../pages/torcedores-info/torcedores-info';
 
+import { IncluirAulaPage } from '../pages/incluir-aula/incluir-aula';
+import { ModulosPage } from '../pages/modulos/modulos';
+
 @NgModule({
   declarations: [
     MyApp,
     TorcedoresInfoPage,
+    IncluirCursoPage,
+    ModulosPage,
     TorcedoresPage,
+    IncluirAulaPage,
     NoticiasPage,
     ArtilheirosPage,
     SorteiosPage,
@@ -45,6 +52,9 @@ import { TorcedoresInfoPage } from '../pages/torcedores-info/torcedores-info';
     MyApp,
     TorcedoresInfoPage,
     TorcedoresPage,
+    IncluirCursoPage,
+    IncluirAulaPage,
+    ModulosPage,
     NoticiasPage,
     ArtilheirosPage,
     SorteiosPage,

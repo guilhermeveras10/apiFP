@@ -5,16 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { NoticiasPage } from '../pages/noticias/noticias';
 import { TorcedoresPage } from '../pages/torcedores/torcedores';
-import { ArtilheirosPage } from '../pages/artilheiros/artilheiros';
-import { EnquetesPage } from '../pages/enquetes/enquetes';
 import * as firebase from 'firebase';
-import { JogadoresPage } from '../pages/jogadores/jogadores';
-import { JogosPage } from '../pages/jogos/jogos';
-import { ProdutosLojaPage } from '../pages/produtos-loja/produtos-loja';
-import { ProdutosPontosPage } from '../pages/produtos-pontos/produtos-pontos';
-import { SorteiosPage } from '../pages/sorteios/sorteios';
-import { VideosPage } from '../pages/videos/videos';
-import { TimesPage } from '../pages/times/times';
+import { ModulosPage } from '../pages/modulos/modulos';
 
 @Component({
   templateUrl: 'app.html'
@@ -31,9 +23,9 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'usuários', component: TorcedoresPage },
-      // { title: 'Notícias', component: NoticiasPage },
-      // { title: 'Jogadores', component: JogadoresPage },
+      { title: 'Usuários', component: TorcedoresPage },
+      { title: 'Curso principal', component: NoticiasPage },
+      { title: 'Módulos', component: ModulosPage },
       // { title: 'Artilheiros', component: ArtilheirosPage },
       // { title: 'Enquetes', component: EnquetesPage },
       // { title: 'Sorteios', component: SorteiosPage },

@@ -26,13 +26,13 @@ export class TorcedoresInfoPage {
     this.getTorcedorInfo();
   }
   getTorcedorInfo(){
-    firebase.database().ref('torcedores/'+this.torcedorKey).on('value', snapshot => {
+    firebase.database().ref('usuarios/'+this.torcedorKey).on('value', snapshot => {
       this.torcedor = snapshot.val();
     })
   }
 
   updateUserInfo(){
-    firebase.database().ref('torcedores/'+this.torcedorKey).update(this.torcedor).then(data=>{
+    firebase.database().ref('usuarios/'+this.torcedorKey).update(this.torcedor).then(data=>{
       this.displayToast("Upado com sucesso");
     }).catch( err => console.log(err));
   }

@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Notícias</ion-title>
+    <ion-title>Curso principal</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
@@ -16,19 +16,16 @@
   </div>
   <ion-list>
     <ion-item>
-      <ion-label stacked>Nome da notícia</ion-label>
+      <ion-label stacked>Nome do curso</ion-label>
       <ion-input type="text" [(ngModel)]="noticia.nome"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label stacked>Descrição da notícia</ion-label>
-      <ion-textarea [(ngModel)]="noticia.descricao"></ion-textarea>
+      <ion-label stacked>Destinado á qual tipo de usuário</ion-label>
+      <ion-input type="text" [(ngModel)]="noticia.tipoDeUsuario"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label stacked>Notícia em destaque ?</ion-label>
-      <ion-select [(ngModel)]="noticia.destaque">
-        <ion-option>Sim</ion-option>
-        <ion-option>Não</ion-option>
-      </ion-select>
+      <ion-label stacked>Descrição do curso</ion-label>
+      <ion-textarea [(ngModel)]="noticia.descricao"></ion-textarea>
     </ion-item>
     <ion-item>
       <button ion-button block (click)="save()">Salvar</button>
@@ -39,6 +36,7 @@
       <th>Foto</th>
       <th>Nome</th>
       <th>Descrição</th>
+      <th>Destinado</th>
       <th>Ações</th>
     </thead>
     <tbody>
@@ -48,7 +46,10 @@
         </td>
         <td>{{noticia.nome}}</td>
         <td>{{noticia.descricao}}</td>
+        <td>{{noticia.tipoDeUsuario}}</td>
         <td>
+            <a href="#" *ngIf="noticia.status=='SUCESSO'" (click)="incluir(noticia.key)">Incluir Módulo</a>
+        <br>
           <a href="#" *ngIf="noticia.status=='SUCESSO'" (click)="delete(noticia.key)">Deletar</a>
         </td>
       </tr>
