@@ -27,7 +27,7 @@ export class ModulosPage {
   }
 
   getAllTorcedores() {
-    firebase.database().ref('modulos').on('value', requests => {
+    firebase.database().ref('modulosCursoPrincipalViewApi').on('value', requests => {
       let tmp = [];
       requests.forEach(request => {
         tmp.push({ key: request.key, ...request.val() });
@@ -36,9 +36,9 @@ export class ModulosPage {
       this.torcedores = tmp;
     })
   }
-
-  delete(id){
-    firebase.database().ref('modulos/'+id).remove();
+  delete(id, curso){
+    firebase.database().ref('modulosCursoPrincipal/' + curso + '/' +id).remove();
+    firebase.database().ref('modulosCursoPrincipalViewApi/'+id).remove();
   }
 
   incluir(key){

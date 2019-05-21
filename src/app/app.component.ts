@@ -8,6 +8,8 @@ import { TorcedoresPage } from '../pages/torcedores/torcedores';
 import * as firebase from 'firebase';
 import { ModulosPage } from '../pages/modulos/modulos';
 import { AulasPage } from '../pages/aulas/aulas';
+import { CursoComplementarPage } from '../pages/curso-complementar/curso-complementar';
+import { AulasCursoComplementarPage } from '../pages/aulas-curso-complementar/aulas-curso-complementar';
 
 @Component({
   templateUrl: 'app.html'
@@ -26,20 +28,21 @@ export class MyApp {
     this.pages = [
       { title: 'Usuários', component: TorcedoresPage },
       { title: 'Curso principal', component: NoticiasPage },
-      { title: 'Módulos', component: ModulosPage },
-      { title: 'Aulas', component: AulasPage }
+      { title: 'Módulos curso principal', component: ModulosPage },
+      { title: 'Aulas curso principal', component: AulasPage },
+      { title: 'Curso complementar', component: CursoComplementarPage },
+      { title: 'Aula curso complementar', component: AulasCursoComplementarPage }
     ];
-
   }
 
   initializeApp() {
     firebase.initializeApp({
       apiKey: "AIzaSyBrtAgU0fHKzwi99jFC0ETM_GRgnTwxoY4",
-    authDomain: "dbfp-da58f.firebaseapp.com",
-    databaseURL: "https://dbfp-da58f.firebaseio.com",
-    projectId: "dbfp-da58f",
-    storageBucket: "dbfp-da58f.appspot.com",
-    messagingSenderId: "347251983378"
+      authDomain: "dbfp-da58f.firebaseapp.com",
+      databaseURL: "https://dbfp-da58f.firebaseio.com",
+      projectId: "dbfp-da58f",
+      storageBucket: "dbfp-da58f.appspot.com",
+      messagingSenderId: "347251983378"
     });
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

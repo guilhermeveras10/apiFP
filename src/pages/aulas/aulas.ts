@@ -25,7 +25,7 @@ export class AulasPage {
   }
 
   getAllTorcedores() {
-    firebase.database().ref('aulas').on('value', requests => {
+    firebase.database().ref('aulasCursoPrincipalPremiumApi').on('value', requests => {
       let tmp = [];
       requests.forEach(request => {
         tmp.push({ key: request.key, ...request.val() });
@@ -36,6 +36,7 @@ export class AulasPage {
   }
 
   delete(id){
-    firebase.database().ref('aulas/'+id).remove();
+    firebase.database().ref('aulasCursoPrincipal/'+id).remove();
+    firebase.database().ref('aulasCursoPrincipalPremiumApi/'+id).remove();
   }
 }

@@ -14,7 +14,19 @@
       <input id="imgNoticia" name="file" type="file" (change)="upload()">
     </form>
   </div>
+
+  <div style="text-align: center;">
+    <h1>Escolher imagem com o play</h1>
+    <img *ngIf="noticia.url2" src="{{ noticia.url2 }}" style="width:100px;height:100px;" (click)="chooseFile2()">
+    <form ngNoForm>
+      <input id="imgNoticia2" name="file" type="file" (change)="upload2()">
+    </form>
+  </div>
   <ion-list>
+    <ion-item>
+      <ion-label stacked>Id do curso</ion-label>
+      <ion-input type="text" [(ngModel)]="noticia.id"></ion-input>
+    </ion-item>
     <ion-item>
       <ion-label stacked>Nome do curso</ion-label>
       <ion-input type="text" [(ngModel)]="noticia.nome"></ion-input>
@@ -34,6 +46,7 @@
   <table>
     <thead>
       <th>Foto</th>
+      <th>Foto2</th>
       <th>Nome</th>
       <th>Descrição</th>
       <th>Destinado</th>
@@ -44,12 +57,15 @@
         <td>
           <img [src]="noticia.url">
         </td>
+        <td>
+          <img [src]="noticia.url2">
+        </td>
         <td>{{noticia.nome}}</td>
         <td>{{noticia.descricao}}</td>
         <td>{{noticia.tipoDeUsuario}}</td>
         <td>
-            <a href="#" *ngIf="noticia.status=='SUCESSO'" (click)="incluir(noticia.key)">Incluir Módulo</a>
-        <br>
+          <a href="#" *ngIf="noticia.status=='SUCESSO'" (click)="incluir(noticia.key)">Incluir Módulo</a>
+          <br>
           <a href="#" *ngIf="noticia.status=='SUCESSO'" (click)="delete(noticia.key)">Deletar</a>
         </td>
       </tr>

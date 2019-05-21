@@ -29,13 +29,30 @@ export class NoticiasPage {
 
   save() {
     this.upload();
-    firebase.database().ref('cursoPrincipal/').push().update(this.noticia).then(data => {
+    this.upload2();
+    firebase.database().ref('cursoPrincipal/' + this.noticia.id).update(this.noticia).then(data => {
       this.displayToast("Upado com sucesso")
     });
   }
 
   chooseFile() { document.getElementById('imgNoticia').click(); }
+  chooseFile2() { document.getElementById('imgNoticia2').click(); }
 
+  upload2() {
+    // Create a root reference
+    let storageRef = firebase.storage().ref();
+    let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
+    loading.present();
+
+    for (let selectedFile of [(<HTMLInputElement>document.getElementById('imgNoticia2')).files[0]]) {
+      let path = '/cursoPrincipal/' + Date.now() + `${selectedFile.name}`;
+      let iRef = storageRef.child(path);
+      iRef.put(selectedFile).then((snapshot) => {
+        loading.dismiss();
+        this.noticia.url2 = snapshot.downloadURL;
+      });
+    }
+  }
   upload() {
     // Create a root reference
     let storageRef = firebase.storage().ref();

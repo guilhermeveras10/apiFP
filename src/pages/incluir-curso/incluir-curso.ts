@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ViewController , ModalController , NavController, NavParams, LoadingController, AlertController, ToastController, IonicPage } from 'ionic-angular';
+import { ViewController, ModalController, NavController, NavParams, LoadingController, AlertController, ToastController, IonicPage } from 'ionic-angular';
 import * as firebase from 'firebase';
 /**
  * Generated class for the IncluirCursoPage page.
@@ -18,24 +18,26 @@ export class IncluirCursoPage {
   torcedor: any = {};
   torcedorKey: any;
   noticia: any = {};
-  
+
   constructor(public viewCtrl: ViewController, public nav: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public toastCtrl: ToastController, public modalCtrl: ModalController) {
     this.torcedorKey = navParams.get('key');
   }
-  
+
   ionViewDidLoad() {
     this.getTorcedorInfo();
   }
-  getTorcedorInfo(){
-    firebase.database().ref('cursoPrincipal/'+this.torcedorKey).on('value', snapshot => {
+  getTorcedorInfo() {
+    firebase.database().ref('cursoPrincipal/' + this.torcedorKey).on('value', snapshot => {
       this.torcedor = snapshot.val();
     })
   }
 
   save() {
     this.upload();
-    firebase.database().ref('modulos/').push().update(this.noticia).then(data => {
+    firebase.database().ref('modulosCursoPrincipal/' + this.torcedorKey + '/' + this.noticia.etapa).update(this.noticia).then(data => {
+    firebase.database().ref('modulosCursoPrincipalViewApi/' + this.noticia.etapa).update(this.noticia).then(data => {
       this.displayToast("Upado com sucesso")
+    });
     });
   }
 
@@ -63,7 +65,7 @@ export class IncluirCursoPage {
   displayToast(message) {
     this.toastCtrl.create({ duration: 2000, message }).present();
   }
-  close(){
+  close() {
     this.viewCtrl.dismiss();
   }
 }
