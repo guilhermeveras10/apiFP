@@ -11,6 +11,13 @@
 </ion-header>
 
 <ion-content>
+    <div style="text-align: center;">
+        <h1>Escolher imagem</h1>
+        <img *ngIf="noticia.url" src="{{ noticia.url }}" style="width:50px;height:50px;" (click)="chooseFile()">
+        <form ngNoForm>
+          <input id="imgAula" name="file" type="file" (change)="upload()">
+        </form>
+      </div>
   <ion-list>
     <ion-item>
       <ion-label stacked>Url do conteúdo da aula</ion-label>

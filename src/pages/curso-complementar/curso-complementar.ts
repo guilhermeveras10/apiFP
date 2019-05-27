@@ -29,9 +29,27 @@ export class CursoComplementarPage {
 
   save() {
     this.upload();
-    firebase.database().ref('cursoComplementar/').push().update(this.noticia).then(data => {
+    this.upload2();
+    firebase.database().ref('cursoComplementar/' + this.noticia.nome).update(this.noticia).then(data => {
       this.displayToast("Upado com sucesso")
     });
+  }
+  chooseFile2() { document.getElementById('imgNoticia2').click(); }
+
+  upload2() {
+    // Create a root reference
+    let storageRef = firebase.storage().ref();
+    let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
+    loading.present();
+
+    for (let selectedFile of [(<HTMLInputElement>document.getElementById('imgNoticia2')).files[0]]) {
+      let path = '/aulaCursoComplementar/' + Date.now() + `${selectedFile.name}`;
+      let iRef = storageRef.child(path);
+      iRef.put(selectedFile).then((snapshot) => {
+        loading.dismiss();
+        this.noticia.url2 = snapshot.downloadURL;
+      });
+    }
   }
 
   chooseFile() { document.getElementById('imgNoticia').click(); }

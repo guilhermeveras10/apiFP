@@ -25,7 +25,7 @@ export class AulasCursoComplementarPage {
   }
 
   getAllTorcedores() {
-    firebase.database().ref('aulaCursoComplementar').on('value', requests => {
+    firebase.database().ref('aulaCursoComplementarApi').on('value', requests => {
       let tmp = [];
       requests.forEach(request => {
         tmp.push({ key: request.key, ...request.val() });
@@ -35,7 +35,8 @@ export class AulasCursoComplementarPage {
     })
   }
 
-  delete(id){
+  delete(id,titulo){
+    firebase.database().ref('aulaCursoComplementarApi'+id+'/'+titulo)
     firebase.database().ref('aulasCursoComplementar/'+id).remove();
   }
 }

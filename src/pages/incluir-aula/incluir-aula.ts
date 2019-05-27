@@ -31,8 +31,26 @@ export class IncluirAulaPage {
       this.torcedor = snapshot.val();
     })
   }
+  chooseFile() { document.getElementById('imgAula').click(); }
+
+  upload() {
+    // Create a root reference
+    let storageRef = firebase.storage().ref();
+    let loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
+    loading.present();
+
+    for (let selectedFile of [(<HTMLInputElement>document.getElementById('imgAula')).files[0]]) {
+      let path = '/aulascomplementar/' + Date.now() + `${selectedFile.name}`;
+      let iRef = storageRef.child(path);
+      iRef.put(selectedFile).then((snapshot) => {
+        loading.dismiss();
+        this.noticia.url = snapshot.downloadURL;
+      });
+    }
+  }
 
   save() {
+    this.upload();
     this.noticia.status = 'SUCESSO';
     this.noticia.timestamp = firebase.database.ServerValue.TIMESTAMP;
     this.noticia.id_do_modulo = this.torcedorKey;

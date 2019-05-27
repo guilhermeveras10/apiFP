@@ -55,8 +55,10 @@ export class IncluirAulaCursoComplementarPage {
     this.noticia.status = 'SUCESSO';
     this.noticia.timestamp = firebase.database.ServerValue.TIMESTAMP;
     this.noticia.id_do_curso = this.torcedorKey;
-    firebase.database().ref('aulaCursoComplementar/' + this.torcedorKey).update(this.noticia).then(data => {
+    firebase.database().ref('aulaCursoComplementarApi/' + this.noticia.titulo).update(this.noticia).then(data => {
+      firebase.database().ref('aulaCursoComplementar/' + this.torcedorKey + '/' + this.noticia.titulo).update(this.noticia).then(data => {
         this.displayToast("Upado com sucesso")
+      });
     });
   }
 

@@ -14,6 +14,13 @@
         <input id="imgNoticia" name="file" type="file" (change)="upload()">
       </form>
     </div>
+    <div style="text-align: center;">
+      <h1>Escolher imagem com play</h1>
+      <img *ngIf="noticia.url2" src="{{ noticia.url2 }}" style="width:100px;height:100px;" (click)="chooseFile2()">
+      <form ngNoForm>
+        <input id="imgNoticia2" name="file" type="file" (change)="upload2()">
+      </form>
+    </div>
     <ion-list>
       <ion-item>
         <ion-label stacked>Titulo do curso</ion-label>

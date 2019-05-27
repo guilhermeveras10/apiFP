@@ -51,7 +51,7 @@ var AulasCursoComplementarPage = (function () {
     };
     AulasCursoComplementarPage.prototype.getAllTorcedores = function () {
         var _this = this;
-        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('aulaCursoComplementar').on('value', function (requests) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('aulaCursoComplementarApi').on('value', function (requests) {
             var tmp = [];
             requests.forEach(function (request) {
                 tmp.push(__assign({ key: request.key }, request.val()));
@@ -60,12 +60,13 @@ var AulasCursoComplementarPage = (function () {
             _this.torcedores = tmp;
         });
     };
-    AulasCursoComplementarPage.prototype.delete = function (id) {
+    AulasCursoComplementarPage.prototype.delete = function (id, titulo) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('aulaCursoComplementarApi' + id + '/' + titulo);
         __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('aulasCursoComplementar/' + id).remove();
     };
     AulasCursoComplementarPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-aulas-curso-complementar',template:/*ion-inline-start:"/home/guilherme/workspace/apiFP/src/pages/aulas-curso-complementar/aulas-curso-complementar.html"*/'<ion-header>\n    <ion-navbar color="dark">\n      <button ion-button menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title>Aulas curso complementar</ion-title>\n    </ion-navbar>\n  </ion-header>\n  <ion-content padding>\n    <table>\n      <thead>\n        <th>Título</th>\n        <th>Descrição</th>\n        <th>Ações</th>\n      </thead>\n      <tbody>\n        <tr *ngFor="let torcedor of torcedores">\n          <td>{{torcedor.titulo}}</td>\n          <td>{{torcedor.descricao}}</td>\n          <td>\n            <a href="#" (click)="delete(torcedor.key)">Deletar</a>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </ion-content>\n  '/*ion-inline-end:"/home/guilherme/workspace/apiFP/src/pages/aulas-curso-complementar/aulas-curso-complementar.html"*/,
+            selector: 'page-aulas-curso-complementar',template:/*ion-inline-start:"/home/guilherme/workspace/apiFP/src/pages/aulas-curso-complementar/aulas-curso-complementar.html"*/'<ion-header>\n    <ion-navbar color="dark">\n      <button ion-button menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title>Aulas curso complementar</ion-title>\n    </ion-navbar>\n  </ion-header>\n  <ion-content padding>\n    <table>\n      <thead>\n        <th>Título</th>\n        <th>Descrição</th>\n        <th>Ações</th>\n      </thead>\n      <tbody>\n        <tr *ngFor="let torcedor of torcedores">\n          <td>{{torcedor.titulo}}</td>\n          <td>{{torcedor.descricao}}</td>\n          <td>\n            <a href="#" (click)="delete(torcedor.key,torcedor.titulo)">Deletar</a>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </ion-content>\n  '/*ion-inline-end:"/home/guilherme/workspace/apiFP/src/pages/aulas-curso-complementar/aulas-curso-complementar.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */]])
     ], AulasCursoComplementarPage);
@@ -208,9 +209,27 @@ var CursoComplementarPage = (function () {
     CursoComplementarPage.prototype.save = function () {
         var _this = this;
         this.upload();
-        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('cursoComplementar/').push().update(this.noticia).then(function (data) {
+        this.upload2();
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('cursoComplementar/' + this.noticia.nome).update(this.noticia).then(function (data) {
             _this.displayToast("Upado com sucesso");
         });
+    };
+    CursoComplementarPage.prototype.chooseFile2 = function () { document.getElementById('imgNoticia2').click(); };
+    CursoComplementarPage.prototype.upload2 = function () {
+        var _this = this;
+        // Create a root reference
+        var storageRef = __WEBPACK_IMPORTED_MODULE_2_firebase__["storage"]().ref();
+        var loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
+        loading.present();
+        for (var _i = 0, _a = [document.getElementById('imgNoticia2').files[0]]; _i < _a.length; _i++) {
+            var selectedFile = _a[_i];
+            var path = '/aulaCursoComplementar/' + Date.now() + ("" + selectedFile.name);
+            var iRef = storageRef.child(path);
+            iRef.put(selectedFile).then(function (snapshot) {
+                loading.dismiss();
+                _this.noticia.url2 = snapshot.downloadURL;
+            });
+        }
     };
     CursoComplementarPage.prototype.chooseFile = function () { document.getElementById('imgNoticia').click(); };
     CursoComplementarPage.prototype.upload = function () {
@@ -253,7 +272,7 @@ var CursoComplementarPage = (function () {
     };
     CursoComplementarPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-curso-complementar',template:/*ion-inline-start:"/home/guilherme/workspace/apiFP/src/pages/curso-complementar/curso-complementar.html"*/'<ion-header>\n    <ion-navbar color="dark">\n      <button ion-button menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title>Curso complementar</ion-title>\n    </ion-navbar>\n  </ion-header>\n  <ion-content>\n    <div style="text-align: center;">\n      <h1>Escolher imagem</h1>\n      <img *ngIf="noticia.url" src="{{ noticia.url }}" style="width:100px;height:100px;" (click)="chooseFile()">\n      <form ngNoForm>\n        <input id="imgNoticia" name="file" type="file" (change)="upload()">\n      </form>\n    </div>\n    <ion-list>\n      <ion-item>\n        <ion-label stacked>Titulo do curso</ion-label>\n        <ion-input type="text" [(ngModel)]="noticia.nome"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label stacked>Descrição do curso</ion-label>\n        <ion-textarea [(ngModel)]="noticia.descricao"></ion-textarea>\n      </ion-item>\n      <ion-item>\n        <button ion-button block (click)="save()">Salvar</button>\n      </ion-item>\n    </ion-list>\n    <table>\n      <thead>\n        <th>Foto</th>\n        <th>Título</th>\n        <th>Descrição</th>\n        <th>Ações</th>\n      </thead>\n      <tbody>\n        <tr *ngFor="let noticia of noticias">\n          <td>\n            <img [src]="noticia.url">\n          </td>\n          <td>{{noticia.nome}}</td>\n          <td>{{noticia.descricao}}</td>\n          <td>\n              <a href="#" *ngIf="noticia.status==\'SUCESSO\'" (click)="incluir(noticia.key)">Incluir aula complementar</a>\n          <br>\n            <a href="#" *ngIf="noticia.status==\'SUCESSO\'" (click)="delete(noticia.key)">Deletar</a>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </ion-content>'/*ion-inline-end:"/home/guilherme/workspace/apiFP/src/pages/curso-complementar/curso-complementar.html"*/,
+            selector: 'page-curso-complementar',template:/*ion-inline-start:"/home/guilherme/workspace/apiFP/src/pages/curso-complementar/curso-complementar.html"*/'<ion-header>\n    <ion-navbar color="dark">\n      <button ion-button menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title>Curso complementar</ion-title>\n    </ion-navbar>\n  </ion-header>\n  <ion-content>\n    <div style="text-align: center;">\n      <h1>Escolher imagem</h1>\n      <img *ngIf="noticia.url" src="{{ noticia.url }}" style="width:100px;height:100px;" (click)="chooseFile()">\n      <form ngNoForm>\n        <input id="imgNoticia" name="file" type="file" (change)="upload()">\n      </form>\n    </div>\n    <div style="text-align: center;">\n      <h1>Escolher imagem com play</h1>\n      <img *ngIf="noticia.url2" src="{{ noticia.url2 }}" style="width:100px;height:100px;" (click)="chooseFile2()">\n      <form ngNoForm>\n        <input id="imgNoticia2" name="file" type="file" (change)="upload2()">\n      </form>\n    </div>\n    <ion-list>\n      <ion-item>\n        <ion-label stacked>Titulo do curso</ion-label>\n        <ion-input type="text" [(ngModel)]="noticia.nome"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label stacked>Descrição do curso</ion-label>\n        <ion-textarea [(ngModel)]="noticia.descricao"></ion-textarea>\n      </ion-item>\n      <ion-item>\n        <button ion-button block (click)="save()">Salvar</button>\n      </ion-item>\n    </ion-list>\n    <table>\n      <thead>\n        <th>Foto</th>\n        <th>Título</th>\n        <th>Descrição</th>\n        <th>Ações</th>\n      </thead>\n      <tbody>\n        <tr *ngFor="let noticia of noticias">\n          <td>\n            <img [src]="noticia.url">\n          </td>\n          <td>{{noticia.nome}}</td>\n          <td>{{noticia.descricao}}</td>\n          <td>\n              <a href="#" *ngIf="noticia.status==\'SUCESSO\'" (click)="incluir(noticia.key)">Incluir aula complementar</a>\n          <br>\n            <a href="#" *ngIf="noticia.status==\'SUCESSO\'" (click)="delete(noticia.key)">Deletar</a>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </ion-content>'/*ion-inline-end:"/home/guilherme/workspace/apiFP/src/pages/curso-complementar/curso-complementar.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */]])
     ], CursoComplementarPage);
@@ -336,8 +355,10 @@ var IncluirAulaCursoComplementarPage = (function () {
         this.noticia.status = 'SUCESSO';
         this.noticia.timestamp = __WEBPACK_IMPORTED_MODULE_2_firebase__["database"].ServerValue.TIMESTAMP;
         this.noticia.id_do_curso = this.torcedorKey;
-        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('aulaCursoComplementar/' + this.torcedorKey).update(this.noticia).then(function (data) {
-            _this.displayToast("Upado com sucesso");
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('aulaCursoComplementarApi/' + this.noticia.titulo).update(this.noticia).then(function (data) {
+            __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('aulaCursoComplementar/' + _this.torcedorKey + '/' + _this.noticia.titulo).update(_this.noticia).then(function (data) {
+                _this.displayToast("Upado com sucesso");
+            });
         });
     };
     IncluirAulaCursoComplementarPage.prototype.displayToast = function (message) {
@@ -408,8 +429,26 @@ var IncluirAulaPage = (function () {
             _this.torcedor = snapshot.val();
         });
     };
+    IncluirAulaPage.prototype.chooseFile = function () { document.getElementById('imgAula').click(); };
+    IncluirAulaPage.prototype.upload = function () {
+        var _this = this;
+        // Create a root reference
+        var storageRef = __WEBPACK_IMPORTED_MODULE_2_firebase__["storage"]().ref();
+        var loading = this.loadingCtrl.create({ content: 'Por favor aguarde...' });
+        loading.present();
+        for (var _i = 0, _a = [document.getElementById('imgAula').files[0]]; _i < _a.length; _i++) {
+            var selectedFile = _a[_i];
+            var path = '/aulascomplementar/' + Date.now() + ("" + selectedFile.name);
+            var iRef = storageRef.child(path);
+            iRef.put(selectedFile).then(function (snapshot) {
+                loading.dismiss();
+                _this.noticia.url = snapshot.downloadURL;
+            });
+        }
+    };
     IncluirAulaPage.prototype.save = function () {
         var _this = this;
+        this.upload();
         this.noticia.status = 'SUCESSO';
         this.noticia.timestamp = __WEBPACK_IMPORTED_MODULE_2_firebase__["database"].ServerValue.TIMESTAMP;
         this.noticia.id_do_modulo = this.torcedorKey;
@@ -428,11 +467,12 @@ var IncluirAulaPage = (function () {
     };
     IncluirAulaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-incluir-aula',template:/*ion-inline-start:"/home/guilherme/workspace/apiFP/src/pages/incluir-aula/incluir-aula.html"*/'<ion-header>\n  <ion-navbar color="dark">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{torcedor.titulo}}</ion-title>\n    <ion-buttons end>\n      <button ion-button clear (click)="close()">Fechar</button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-item>\n      <ion-label stacked>Url do conteúdo da aula</ion-label>\n      <ion-input type="text" [(ngModel)]="noticia.urlDoConteudo"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Url da aula</ion-label>\n      <ion-input type="text" [(ngModel)]="noticia.urlDaAula"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Título da aula</ion-label>\n      <ion-input type="text" [(ngModel)]="noticia.titulo"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Subtitulo da aula</ion-label>\n      <ion-input type="text" [(ngModel)]="noticia.subtitulo"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Qual a aula ?</ion-label>\n      <ion-input type="text" [(ngModel)]="noticia.aula"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Descrição da aula</ion-label>\n      <ion-textarea [(ngModel)]="noticia.descricao"></ion-textarea>\n    </ion-item>\n    <ion-item>\n      <button ion-button block (click)="save()">Salvar</button>\n    </ion-item>\n  </ion-list>\n</ion-content>'/*ion-inline-end:"/home/guilherme/workspace/apiFP/src/pages/incluir-aula/incluir-aula.html"*/,
+            selector: 'page-incluir-aula',template:/*ion-inline-start:"/home/guilherme/workspace/apiFP/src/pages/incluir-aula/incluir-aula.html"*/'<ion-header>\n  <ion-navbar color="dark">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{torcedor.titulo}}</ion-title>\n    <ion-buttons end>\n      <button ion-button clear (click)="close()">Fechar</button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <div style="text-align: center;">\n        <h1>Escolher imagem</h1>\n        <img *ngIf="noticia.url" src="{{ noticia.url }}" style="width:50px;height:50px;" (click)="chooseFile()">\n        <form ngNoForm>\n          <input id="imgAula" name="file" type="file" (change)="upload()">\n        </form>\n      </div>\n  <ion-list>\n    <ion-item>\n      <ion-label stacked>Url do conteúdo da aula</ion-label>\n      <ion-input type="text" [(ngModel)]="noticia.urlDoConteudo"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Url da aula</ion-label>\n      <ion-input type="text" [(ngModel)]="noticia.urlDaAula"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Título da aula</ion-label>\n      <ion-input type="text" [(ngModel)]="noticia.titulo"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Subtitulo da aula</ion-label>\n      <ion-input type="text" [(ngModel)]="noticia.subtitulo"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Qual a aula ?</ion-label>\n      <ion-input type="text" [(ngModel)]="noticia.aula"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Descrição da aula</ion-label>\n      <ion-textarea [(ngModel)]="noticia.descricao"></ion-textarea>\n    </ion-item>\n    <ion-item>\n      <button ion-button block (click)="save()">Salvar</button>\n    </ion-item>\n  </ion-list>\n</ion-content>'/*ion-inline-end:"/home/guilherme/workspace/apiFP/src/pages/incluir-aula/incluir-aula.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */]) === "function" && _g || Object])
     ], IncluirAulaPage);
     return IncluirAulaPage;
+    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=incluir-aula.js.map
@@ -738,10 +778,9 @@ var NoticiasPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-noticias',template:/*ion-inline-start:"/home/guilherme/workspace/apiFP/src/pages/noticias/noticias.html"*/'<ion-header>\n  <ion-navbar color="dark">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Curso principal</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <div style="text-align: center;">\n    <h1>Escolher imagem</h1>\n    <img *ngIf="noticia.url" src="{{ noticia.url }}" style="width:100px;height:100px;" (click)="chooseFile()">\n    <form ngNoForm>\n      <input id="imgNoticia" name="file" type="file" (change)="upload()">\n    </form>\n  </div>\n\n  <div style="text-align: center;">\n    <h1>Escolher imagem com o play</h1>\n    <img *ngIf="noticia.url2" src="{{ noticia.url2 }}" style="width:100px;height:100px;" (click)="chooseFile2()">\n    <form ngNoForm>\n      <input id="imgNoticia2" name="file" type="file" (change)="upload2()">\n    </form>\n  </div>\n  <ion-list>\n    <ion-item>\n      <ion-label stacked>Id do curso</ion-label>\n      <ion-input type="text" [(ngModel)]="noticia.id"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Nome do curso</ion-label>\n      <ion-input type="text" [(ngModel)]="noticia.nome"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Destinado á qual tipo de usuário</ion-label>\n      <ion-input type="text" [(ngModel)]="noticia.tipoDeUsuario"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Descrição do curso</ion-label>\n      <ion-textarea [(ngModel)]="noticia.descricao"></ion-textarea>\n    </ion-item>\n    <ion-item>\n      <button ion-button block (click)="save()">Salvar</button>\n    </ion-item>\n  </ion-list>\n  <table>\n    <thead>\n      <th>Foto</th>\n      <th>Foto2</th>\n      <th>Nome</th>\n      <th>Descrição</th>\n      <th>Destinado</th>\n      <th>Ações</th>\n    </thead>\n    <tbody>\n      <tr *ngFor="let noticia of noticias">\n        <td>\n          <img [src]="noticia.url">\n        </td>\n        <td>\n          <img [src]="noticia.url2">\n        </td>\n        <td>{{noticia.nome}}</td>\n        <td>{{noticia.descricao}}</td>\n        <td>{{noticia.tipoDeUsuario}}</td>\n        <td>\n          <a href="#" *ngIf="noticia.status==\'SUCESSO\'" (click)="incluir(noticia.key)">Incluir Módulo</a>\n          <br>\n          <a href="#" *ngIf="noticia.status==\'SUCESSO\'" (click)="delete(noticia.key)">Deletar</a>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</ion-content>'/*ion-inline-end:"/home/guilherme/workspace/apiFP/src/pages/noticias/noticias.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */]) === "function" && _f || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */]])
     ], NoticiasPage);
     return NoticiasPage;
-    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=noticias.js.map
