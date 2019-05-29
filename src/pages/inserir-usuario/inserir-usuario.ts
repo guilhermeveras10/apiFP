@@ -20,9 +20,6 @@ export class InserirUsuarioPage {
   user: any = {};
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
   }
-  getUserData() { // get current user data from firebase
-    this.user.uid = firebase.auth().currentUser;
-  }
   chooseFile() { document.getElementById('imgUser').click(); }
   upload() {
     // Create a root reference
