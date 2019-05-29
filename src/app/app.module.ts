@@ -24,11 +24,13 @@ import { AulasPage } from '../pages/aulas/aulas';
 import { CursoComplementarPage } from '../pages/curso-complementar/curso-complementar';
 import { AulasCursoComplementarPage } from '../pages/aulas-curso-complementar/aulas-curso-complementar';
 import { IncluirAulaCursoComplementarPage } from '../pages/incluir-aula-curso-complementar/incluir-aula-curso-complementar';
+import { InserirUsuarioPage } from '../pages/inserir-usuario/inserir-usuario';
 
 @NgModule({
   declarations: [
     MyApp,
     AulasPage,
+    InserirUsuarioPage,
     AulasCursoComplementarPage,
     IncluirAulaCursoComplementarPage,
     CursoComplementarPage,
@@ -52,6 +54,7 @@ import { IncluirAulaCursoComplementarPage } from '../pages/incluir-aula-curso-co
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    InserirUsuarioPage,
     AulasPage,
     AulasCursoComplementarPage,
     IncluirAulaCursoComplementarPage,

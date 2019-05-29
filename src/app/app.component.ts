@@ -10,6 +10,7 @@ import { ModulosPage } from '../pages/modulos/modulos';
 import { AulasPage } from '../pages/aulas/aulas';
 import { CursoComplementarPage } from '../pages/curso-complementar/curso-complementar';
 import { AulasCursoComplementarPage } from '../pages/aulas-curso-complementar/aulas-curso-complementar';
+import { InserirUsuarioPage } from '../pages/inserir-usuario/inserir-usuario';
 
 @Component({
   templateUrl: 'app.html'
@@ -31,7 +32,8 @@ export class MyApp {
       { title: 'Módulos curso principal', component: ModulosPage },
       { title: 'Aulas curso principal', component: AulasPage },
       { title: 'Curso complementar', component: CursoComplementarPage },
-      { title: 'Aula curso complementar', component: AulasCursoComplementarPage }
+      { title: 'Aula curso complementar', component: AulasCursoComplementarPage },
+      { title: 'Inserir usuário', component: InserirUsuarioPage }
     ];
   }
 

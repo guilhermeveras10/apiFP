@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Inserir usuário</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div style="text-align: center;">
+    <h1>Escolher imagem do usuário</h1>
+    <img *ngIf="user.foto" src="{{ user.foto }}" style="width:100px;height:100px;" (click)="chooseFile()">
+    <form ngNoForm>
+      <input id="imgUser" name="file" type="file" (change)="upload()">
+    </form>
+  </div>
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Email do usuário</ion-label>
+      <ion-input type="text" [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Senha do usuário</ion-label>
+      <ion-input type="password" [(ngModel)]="user.senha"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Nome do usuário</ion-label>
+      <ion-input type="text" [(ngModel)]="user.nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Professor(1) ou aluno(0)</ion-label>
+      <ion-input type="text" [(ngModel)]="user.professor_ou_aluno"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Qual tipo de usuário: Premium ou Free</ion-label>
+      <ion-input type="text" [(ngModel)]="user.tipo_de_usuario"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button ion-button block (click)="registro()">Salvar</button>
+    </ion-item>
+  </ion-list>
+</ion-content>
