@@ -27,7 +27,7 @@ export class IncluirAulaPage {
     this.getTorcedorInfo();
   }
   getTorcedorInfo() {
-    firebase.database().ref('modulosCursoPrincipalViewApi/' + this.torcedorKey).on('value', snapshot => {
+    firebase.database().ref('modulos_curso_principal_view_api/' + this.torcedorKey).on('value', snapshot => {
       this.torcedor = snapshot.val();
     })
   }
@@ -55,8 +55,8 @@ export class IncluirAulaPage {
     this.noticia.timestamp = firebase.database.ServerValue.TIMESTAMP;
     this.noticia.id_do_modulo = this.torcedorKey;
     this.noticia.etapa = this.torcedor.etapa;
-    firebase.database().ref('aulasCursoPrincipal/' + this.torcedor.etapa + '/' + this.noticia.aula).update(this.noticia).then(data => {
-      firebase.database().ref('aulasCursoPrincipalPremiumApi/' + this.noticia.aula).update(this.noticia).then(data => {
+    firebase.database().ref('aulas_curso_principal/' + this.torcedor.etapa + '/' + this.noticia.aula).update(this.noticia).then(data => {
+      firebase.database().ref('aulas_curso_principal_premium_api/' + this.noticia.aula).update(this.noticia).then(data => {
         this.displayToast("Upado com sucesso")
       });
     });

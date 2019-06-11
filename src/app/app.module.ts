@@ -10,12 +10,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { IncluirCursoPage } from '../pages/incluir-curso/incluir-curso';
 import { TorcedoresPage } from '../pages/torcedores/torcedores';
 import { NoticiasPage } from '../pages/noticias/noticias';
-import { EnquetesPage } from '../pages/enquetes/enquetes';
-import { JogadoresPage } from '../pages/jogadores/jogadores';
-import { JogosPage } from '../pages/jogos/jogos';
-import { ProdutosLojaPage } from '../pages/produtos-loja/produtos-loja';
-import { ProdutosPontosPage } from '../pages/produtos-pontos/produtos-pontos';
-import { SorteiosPage } from '../pages/sorteios/sorteios';
 import { TorcedoresInfoPage } from '../pages/torcedores-info/torcedores-info';
 
 import { IncluirAulaPage } from '../pages/incluir-aula/incluir-aula';
@@ -39,13 +33,7 @@ import { InserirUsuarioPage } from '../pages/inserir-usuario/inserir-usuario';
     ModulosPage,
     TorcedoresPage,
     IncluirAulaPage,
-    NoticiasPage,
-    SorteiosPage,
-    EnquetesPage,
-    JogadoresPage,
-    JogosPage,
-    ProdutosLojaPage,
-    ProdutosPontosPage
+    NoticiasPage
   ],
   imports: [
     BrowserModule,
@@ -64,13 +52,7 @@ import { InserirUsuarioPage } from '../pages/inserir-usuario/inserir-usuario';
     IncluirCursoPage,
     IncluirAulaPage,
     ModulosPage,
-    NoticiasPage,
-    SorteiosPage,
-    EnquetesPage,
-    JogadoresPage,
-    JogosPage,
-    ProdutosLojaPage,
-    ProdutosPontosPage
+    NoticiasPage
   ],
   providers: [
     StatusBar,
