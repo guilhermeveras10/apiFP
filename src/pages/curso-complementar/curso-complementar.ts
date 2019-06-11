@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController , NavController, NavParams, LoadingController, AlertController, ToastController, IonicPage } from 'ionic-angular';
+import { ModalController, NavController, NavParams, LoadingController, AlertController, ToastController, IonicPage } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { IncluirAulaCursoComplementarPage } from '../incluir-aula-curso-complementar/incluir-aula-curso-complementar';
 
@@ -30,8 +30,12 @@ export class CursoComplementarPage {
   save() {
     this.upload();
     this.upload2();
-    firebase.database().ref('cursoComplementar/' + this.noticia.nome).update(this.noticia).then(data => {
-      this.displayToast("Upado com sucesso")
+    firebase.database().ref('curso_complementar/' + this.noticia.nome).update(this.noticia).then(data => {
+      firebase.database().ref('search_cursos/' + this.noticia.nome).update(this.noticia).then(data => {
+        firebase.database().ref('tudo_para_search/' + this.noticia.nome).update(this.noticia).then(data => {
+          this.displayToast("Upado com sucesso")
+        });
+      });
     });
   }
   chooseFile2() { document.getElementById('imgNoticia2').click(); }
@@ -68,12 +72,13 @@ export class CursoComplementarPage {
         this.noticia.url = snapshot.downloadURL;
         this.noticia.status = 'SUCESSO';
         this.noticia.timestamp = firebase.database.ServerValue.TIMESTAMP;
+        this.noticia.qual_papel = 'curso_complementar';
       });
     }
   }
 
   getAllNoticias() {
-    firebase.database().ref('cursoComplementar').on('value', requests => {
+    firebase.database().ref('curso_complementar').on('value', requests => {
       let tmp = [];
       requests.forEach(request => {
         tmp.push({ key: request.key, ...request.val() });
@@ -87,11 +92,13 @@ export class CursoComplementarPage {
     this.toastCtrl.create({ duration: 2000, message }).present();
   }
 
-  delete(id){
-    firebase.database().ref('cursoComplementar/'+id).remove();
+  delete(id) {
+    firebase.database().ref('curso_complementar/' + id).remove();
+    firebase.database().ref('search_cursos/' + id).remove();
+    firebase.database().ref('tudo_para_search/' + id).remove();
   }
 
-  incluir(key){
-    this.modalCtrl.create(IncluirAulaCursoComplementarPage, {key}).present();
+  incluir(key) {
+    this.modalCtrl.create(IncluirAulaCursoComplementarPage, { key }).present();
   }
 }

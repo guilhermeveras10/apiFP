@@ -27,15 +27,15 @@ export class IncluirCursoPage {
     this.getTorcedorInfo();
   }
   getTorcedorInfo() {
-    firebase.database().ref('cursoPrincipal/' + this.torcedorKey).on('value', snapshot => {
+    firebase.database().ref('curso_principal/' + this.torcedorKey).on('value', snapshot => {
       this.torcedor = snapshot.val();
     })
   }
 
   save() {
     this.upload();
-    firebase.database().ref('modulosCursoPrincipal/' + this.torcedorKey + '/' + this.noticia.etapa).update(this.noticia).then(data => {
-    firebase.database().ref('modulosCursoPrincipalViewApi/' + this.noticia.etapa).update(this.noticia).then(data => {
+    firebase.database().ref('modulos_curso_principal/' + this.torcedorKey + '/' + this.noticia.etapa).update(this.noticia).then(data => {
+    firebase.database().ref('modulos_curso_principal_view_api/' + this.noticia.etapa).update(this.noticia).then(data => {
       this.displayToast("Upado com sucesso")
     });
     });

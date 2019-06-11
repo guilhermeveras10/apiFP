@@ -81,12 +81,89 @@ var AulasCursoComplementarPage = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AulasPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the AulasPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var AulasPage = (function () {
+    function AulasPage(nav, navParams, loadingCtrl, alertCtrl, toastCtrl, modalCtrl) {
+        this.nav = nav;
+        this.navParams = navParams;
+        this.loadingCtrl = loadingCtrl;
+        this.alertCtrl = alertCtrl;
+        this.toastCtrl = toastCtrl;
+        this.modalCtrl = modalCtrl;
+        this.torcedores = [];
+    }
+    AulasPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad WithdrawRequestsPage');
+        this.getAllTorcedores();
+    };
+    AulasPage.prototype.getAllTorcedores = function () {
+        var _this = this;
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('aulasCursoPrincipalPremiumApi').on('value', function (requests) {
+            var tmp = [];
+            requests.forEach(function (request) {
+                tmp.push(__assign({ key: request.key }, request.val()));
+                return false;
+            });
+            _this.torcedores = tmp;
+        });
+    };
+    AulasPage.prototype.delete = function (id) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('aulasCursoPrincipal/' + id).remove();
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('aulasCursoPrincipalPremiumApi/' + id).remove();
+    };
+    AulasPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-aulas',template:/*ion-inline-start:"/home/guilherme/workspace/apiFP/src/pages/aulas/aulas.html"*/'<ion-header>\n    <ion-navbar color="dark">\n      <button ion-button menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title>Aulas</ion-title>\n    </ion-navbar>\n  </ion-header>\n  <ion-content padding>\n    <table>\n      <thead>\n        <th>Título</th>\n        <th>Subtitulo</th>\n        <th>Descrição</th>\n        <th>Ações</th>\n      </thead>\n      <tbody>\n        <tr *ngFor="let torcedor of torcedores">\n          <td>{{torcedor.titulo}}</td>\n          <td>{{torcedor.subtitulo}}</td>\n          <td>{{torcedor.descricao}}</td>\n          <td>\n            <a href="#" (click)="delete(torcedor.key)">Deletar</a>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </ion-content>\n  '/*ion-inline-end:"/home/guilherme/workspace/apiFP/src/pages/aulas/aulas.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */]])
+    ], AulasPage);
+    return AulasPage;
+}());
+
+//# sourceMappingURL=aulas.js.map
+
+/***/ }),
+
+/***/ 145:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CursoComplementarPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__incluir_aula_curso_complementar_incluir_aula_curso_complementar__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__incluir_aula_curso_complementar_incluir_aula_curso_complementar__ = __webpack_require__(146);
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
@@ -133,8 +210,12 @@ var CursoComplementarPage = (function () {
         var _this = this;
         this.upload();
         this.upload2();
-        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('cursoComplementar/' + this.noticia.nome).update(this.noticia).then(function (data) {
-            _this.displayToast("Upado com sucesso");
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('curso_complementar/' + this.noticia.nome).update(this.noticia).then(function (data) {
+            __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('search_cursos/' + _this.noticia.nome).update(_this.noticia).then(function (data) {
+                __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('tudo_para_search/' + _this.noticia.nome).update(_this.noticia).then(function (data) {
+                    _this.displayToast("Upado com sucesso");
+                });
+            });
         });
     };
     CursoComplementarPage.prototype.chooseFile2 = function () { document.getElementById('imgNoticia2').click(); };
@@ -170,12 +251,13 @@ var CursoComplementarPage = (function () {
                 _this.noticia.url = snapshot.downloadURL;
                 _this.noticia.status = 'SUCESSO';
                 _this.noticia.timestamp = __WEBPACK_IMPORTED_MODULE_2_firebase__["database"].ServerValue.TIMESTAMP;
+                _this.noticia.qual_papel = 'curso_complementar';
             });
         }
     };
     CursoComplementarPage.prototype.getAllNoticias = function () {
         var _this = this;
-        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('cursoComplementar').on('value', function (requests) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('curso_complementar').on('value', function (requests) {
             var tmp = [];
             requests.forEach(function (request) {
                 tmp.push(__assign({ key: request.key }, request.val()));
@@ -188,7 +270,9 @@ var CursoComplementarPage = (function () {
         this.toastCtrl.create({ duration: 2000, message: message }).present();
     };
     CursoComplementarPage.prototype.delete = function (id) {
-        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('cursoComplementar/' + id).remove();
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('curso_complementar/' + id).remove();
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('search_cursos/' + id).remove();
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('tudo_para_search/' + id).remove();
     };
     CursoComplementarPage.prototype.incluir = function (key) {
         this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_3__incluir_aula_curso_complementar_incluir_aula_curso_complementar__["a" /* IncluirAulaCursoComplementarPage */], { key: key }).present();
@@ -197,16 +281,17 @@ var CursoComplementarPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-curso-complementar',template:/*ion-inline-start:"/home/guilherme/workspace/apiFP/src/pages/curso-complementar/curso-complementar.html"*/'<ion-header>\n    <ion-navbar color="dark">\n      <button ion-button menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title>Curso complementar</ion-title>\n    </ion-navbar>\n  </ion-header>\n  <ion-content>\n    <div style="text-align: center;">\n      <h1>Escolher imagem</h1>\n      <img *ngIf="noticia.url" src="{{ noticia.url }}" style="width:100px;height:100px;" (click)="chooseFile()">\n      <form ngNoForm>\n        <input id="imgNoticia" name="file" type="file" (change)="upload()">\n      </form>\n    </div>\n    <div style="text-align: center;">\n      <h1>Escolher imagem com play</h1>\n      <img *ngIf="noticia.url2" src="{{ noticia.url2 }}" style="width:100px;height:100px;" (click)="chooseFile2()">\n      <form ngNoForm>\n        <input id="imgNoticia2" name="file" type="file" (change)="upload2()">\n      </form>\n    </div>\n    <ion-list>\n      <ion-item>\n        <ion-label stacked>Titulo do curso</ion-label>\n        <ion-input type="text" [(ngModel)]="noticia.nome"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label stacked>Descrição do curso</ion-label>\n        <ion-textarea [(ngModel)]="noticia.descricao"></ion-textarea>\n      </ion-item>\n      <ion-item>\n        <button ion-button block (click)="save()">Salvar</button>\n      </ion-item>\n    </ion-list>\n    <table>\n      <thead>\n        <th>Foto</th>\n        <th>Título</th>\n        <th>Descrição</th>\n        <th>Ações</th>\n      </thead>\n      <tbody>\n        <tr *ngFor="let noticia of noticias">\n          <td>\n            <img [src]="noticia.url">\n          </td>\n          <td>{{noticia.nome}}</td>\n          <td>{{noticia.descricao}}</td>\n          <td>\n              <a href="#" *ngIf="noticia.status==\'SUCESSO\'" (click)="incluir(noticia.key)">Incluir aula complementar</a>\n          <br>\n            <a href="#" *ngIf="noticia.status==\'SUCESSO\'" (click)="delete(noticia.key)">Deletar</a>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </ion-content>'/*ion-inline-end:"/home/guilherme/workspace/apiFP/src/pages/curso-complementar/curso-complementar.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */]) === "function" && _f || Object])
     ], CursoComplementarPage);
     return CursoComplementarPage;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=curso-complementar.js.map
 
 /***/ }),
 
-/***/ 145:
+/***/ 146:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -300,83 +385,6 @@ var IncluirAulaCursoComplementarPage = (function () {
 }());
 
 //# sourceMappingURL=incluir-aula-curso-complementar.js.map
-
-/***/ }),
-
-/***/ 146:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AulasPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_firebase__);
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-/**
- * Generated class for the AulasPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var AulasPage = (function () {
-    function AulasPage(nav, navParams, loadingCtrl, alertCtrl, toastCtrl, modalCtrl) {
-        this.nav = nav;
-        this.navParams = navParams;
-        this.loadingCtrl = loadingCtrl;
-        this.alertCtrl = alertCtrl;
-        this.toastCtrl = toastCtrl;
-        this.modalCtrl = modalCtrl;
-        this.torcedores = [];
-    }
-    AulasPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad WithdrawRequestsPage');
-        this.getAllTorcedores();
-    };
-    AulasPage.prototype.getAllTorcedores = function () {
-        var _this = this;
-        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('aulasCursoPrincipalPremiumApi').on('value', function (requests) {
-            var tmp = [];
-            requests.forEach(function (request) {
-                tmp.push(__assign({ key: request.key }, request.val()));
-                return false;
-            });
-            _this.torcedores = tmp;
-        });
-    };
-    AulasPage.prototype.delete = function (id) {
-        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('aulasCursoPrincipal/' + id).remove();
-        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('aulasCursoPrincipalPremiumApi/' + id).remove();
-    };
-    AulasPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-aulas',template:/*ion-inline-start:"/home/guilherme/workspace/apiFP/src/pages/aulas/aulas.html"*/'<ion-header>\n    <ion-navbar color="dark">\n      <button ion-button menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n      <ion-title>Aulas</ion-title>\n    </ion-navbar>\n  </ion-header>\n  <ion-content padding>\n    <table>\n      <thead>\n        <th>Título</th>\n        <th>Subtitulo</th>\n        <th>Descrição</th>\n        <th>Ações</th>\n      </thead>\n      <tbody>\n        <tr *ngFor="let torcedor of torcedores">\n          <td>{{torcedor.titulo}}</td>\n          <td>{{torcedor.subtitulo}}</td>\n          <td>{{torcedor.descricao}}</td>\n          <td>\n            <a href="#" (click)="delete(torcedor.key)">Deletar</a>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </ion-content>\n  '/*ion-inline-end:"/home/guilherme/workspace/apiFP/src/pages/aulas/aulas.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */]])
-    ], AulasPage);
-    return AulasPage;
-}());
-
-//# sourceMappingURL=aulas.js.map
 
 /***/ }),
 
@@ -523,15 +531,15 @@ var IncluirCursoPage = (function () {
     };
     IncluirCursoPage.prototype.getTorcedorInfo = function () {
         var _this = this;
-        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('cursoPrincipal/' + this.torcedorKey).on('value', function (snapshot) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('curso_principal/' + this.torcedorKey).on('value', function (snapshot) {
             _this.torcedor = snapshot.val();
         });
     };
     IncluirCursoPage.prototype.save = function () {
         var _this = this;
         this.upload();
-        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('modulosCursoPrincipal/' + this.torcedorKey + '/' + this.noticia.etapa).update(this.noticia).then(function (data) {
-            __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('modulosCursoPrincipalViewApi/' + _this.noticia.etapa).update(_this.noticia).then(function (data) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('modulos_curso_principal/' + this.torcedorKey + '/' + this.noticia.etapa).update(this.noticia).then(function (data) {
+            __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('modulos_curso_principal_view_api/' + _this.noticia.etapa).update(_this.noticia).then(function (data) {
                 _this.displayToast("Upado com sucesso");
             });
         });
@@ -566,9 +574,10 @@ var IncluirCursoPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-incluir-curso',template:/*ion-inline-start:"/home/guilherme/workspace/apiFP/src/pages/incluir-curso/incluir-curso.html"*/'<ion-header>\n  <ion-navbar color="dark">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>{{torcedor.nome}}</ion-title>\n    <ion-buttons end>\n      <button ion-button clear (click)="close()">Fechar</button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <div style="text-align: center;">\n    <h1>Escolher imagem</h1>\n    <img *ngIf="noticia.url" src="{{ noticia.url }}" style="width:50px;height:50px;" (click)="chooseFile()">\n    <form ngNoForm>\n      <input id="imgModulo" name="file" type="file" (change)="upload()">\n    </form>\n  </div>\n  <ion-list>\n    <ion-item>\n      <ion-label stacked>Nome do módulo </ion-label>\n      <ion-input type="text" [(ngModel)]="noticia.titulo"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Qual etapa ?</ion-label>\n      <ion-input type="text" [(ngModel)]="noticia.etapa"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Descrição do módulo</ion-label>\n      <ion-textarea [(ngModel)]="noticia.descricao"></ion-textarea>\n    </ion-item>\n    <ion-item>\n      <button ion-button block (click)="save()">Salvar</button>\n    </ion-item>\n  </ion-list>\n</ion-content>'/*ion-inline-end:"/home/guilherme/workspace/apiFP/src/pages/incluir-curso/incluir-curso.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* ViewController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */]) === "function" && _g || Object])
     ], IncluirCursoPage);
     return IncluirCursoPage;
+    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=incluir-curso.js.map
@@ -612,9 +621,6 @@ var InserirUsuarioPage = (function () {
         this.loadingCtrl = loadingCtrl;
         this.user = {};
     }
-    InserirUsuarioPage.prototype.getUserData = function () {
-        this.user.uid = __WEBPACK_IMPORTED_MODULE_2_firebase__["auth"]().currentUser;
-    };
     InserirUsuarioPage.prototype.chooseFile = function () { document.getElementById('imgUser').click(); };
     InserirUsuarioPage.prototype.upload = function () {
         var _this = this;
@@ -643,12 +649,23 @@ var InserirUsuarioPage = (function () {
                     _this.upload();
                     __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('usuarios/' + __WEBPACK_IMPORTED_MODULE_2_firebase__["auth"]().currentUser.uid).set({
                         uid: __WEBPACK_IMPORTED_MODULE_2_firebase__["auth"]().currentUser.uid,
-                        foto: _this.user.foto,
+                        url: _this.user.foto,
                         email: _this.user.email,
                         password: _this.user.senha,
                         nome: _this.user.nome,
                         professor_ou_aluno: _this.user.professor_ou_aluno,
-                        tipo_de_usuario: _this.user.tipo_de_usuario
+                        tipo_de_usuario: _this.user.tipo_de_usuario,
+                        qual_papel: 'usuarios'
+                    });
+                    __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('tudo_para_search/' + __WEBPACK_IMPORTED_MODULE_2_firebase__["auth"]().currentUser.uid).set({
+                        uid: __WEBPACK_IMPORTED_MODULE_2_firebase__["auth"]().currentUser.uid,
+                        url: _this.user.foto,
+                        email: _this.user.email,
+                        password: _this.user.senha,
+                        nome: _this.user.nome,
+                        professor_ou_aluno: _this.user.professor_ou_aluno,
+                        tipo_de_usuario: _this.user.tipo_de_usuario,
+                        qual_papel: 'usuarios'
                     }).then(function () {
                         resolve({ success: true });
                     }).catch(function (err) {
@@ -729,7 +746,7 @@ var ModulosPage = (function () {
     };
     ModulosPage.prototype.getAllTorcedores = function () {
         var _this = this;
-        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('modulosCursoPrincipalViewApi').on('value', function (requests) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('modulos_curso_principal_view_api').on('value', function (requests) {
             var tmp = [];
             requests.forEach(function (request) {
                 tmp.push(__assign({ key: request.key }, request.val()));
@@ -739,8 +756,8 @@ var ModulosPage = (function () {
         });
     };
     ModulosPage.prototype.delete = function (id, curso) {
-        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('modulosCursoPrincipal/' + curso + '/' + id).remove();
-        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('modulosCursoPrincipalViewApi/' + id).remove();
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('modulos_curso_principal/' + curso + '/' + id).remove();
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('modulos_curso_principal_view_api/' + id).remove();
     };
     ModulosPage.prototype.incluir = function (key) {
         this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_3__incluir_aula_incluir_aula__["a" /* IncluirAulaPage */], { key: key }).present();
@@ -749,9 +766,10 @@ var ModulosPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-modulos',template:/*ion-inline-start:"/home/guilherme/workspace/apiFP/src/pages/modulos/modulos.html"*/'<ion-header>\n  <ion-navbar color="dark">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Módulo</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content padding>\n  <table>\n    <thead>\n      <th>Foto</th>\n      <th>Título</th>\n      <th>Etapa</th>\n      <th>Ações</th>\n    </thead>\n    <tbody>\n      <tr *ngFor="let torcedor of torcedores">\n        <td>\n          <img [src]="torcedor.url">\n        </td>\n        <td>{{torcedor.titulo}}</td>\n        <td>{{torcedor.etapa}}</td>\n        <td>\n          <a href="#" (click)="incluir(torcedor.key)">Incluir aula</a>\n          <br>\n          <a href="#" (click)="delete(torcedor.key, torcedor.id_do_curso)">Deletar modulo</a>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</ion-content>'/*ion-inline-end:"/home/guilherme/workspace/apiFP/src/pages/modulos/modulos.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */]) === "function" && _f || Object])
     ], ModulosPage);
     return ModulosPage;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=modulos.js.map
@@ -814,8 +832,12 @@ var NoticiasPage = (function () {
         var _this = this;
         this.upload();
         this.upload2();
-        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('cursoPrincipal/' + this.noticia.id).update(this.noticia).then(function (data) {
-            _this.displayToast("Upado com sucesso");
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('curso_principal/' + this.noticia.id).update(this.noticia).then(function (data) {
+            __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('search_cursos/' + _this.noticia.id).update(_this.noticia).then(function (data) {
+                __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('tudo_para_search/' + _this.noticia.id).update(_this.noticia).then(function (data) {
+                    _this.displayToast("Upado com sucesso");
+                });
+            });
         });
     };
     NoticiasPage.prototype.chooseFile = function () { document.getElementById('imgNoticia').click(); };
@@ -851,12 +873,13 @@ var NoticiasPage = (function () {
                 _this.noticia.url = snapshot.downloadURL;
                 _this.noticia.status = 'SUCESSO';
                 _this.noticia.timestamp = __WEBPACK_IMPORTED_MODULE_2_firebase__["database"].ServerValue.TIMESTAMP;
+                _this.noticia.qual_papel = 'curso_principal';
             });
         }
     };
     NoticiasPage.prototype.getAllNoticias = function () {
         var _this = this;
-        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('cursoPrincipal').on('value', function (requests) {
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('curso_principal').on('value', function (requests) {
             var tmp = [];
             requests.forEach(function (request) {
                 tmp.push(__assign({ key: request.key }, request.val()));
@@ -869,7 +892,9 @@ var NoticiasPage = (function () {
         this.toastCtrl.create({ duration: 2000, message: message }).present();
     };
     NoticiasPage.prototype.delete = function (id) {
-        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('cursoPrincipal/' + id).remove();
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('curso_principal/' + id).remove();
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('search_cursos/' + id).remove();
+        __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref('tudo_para_search/' + id).remove();
     };
     NoticiasPage.prototype.incluir = function (key) {
         this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_3__incluir_curso_incluir_curso__["a" /* IncluirCursoPage */], { key: key }).present();
@@ -878,9 +903,10 @@ var NoticiasPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-noticias',template:/*ion-inline-start:"/home/guilherme/workspace/apiFP/src/pages/noticias/noticias.html"*/'<ion-header>\n  <ion-navbar color="dark">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Curso principal</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <div style="text-align: center;">\n    <h1>Escolher imagem</h1>\n    <img *ngIf="noticia.url" src="{{ noticia.url }}" style="width:100px;height:100px;" (click)="chooseFile()">\n    <form ngNoForm>\n      <input id="imgNoticia" name="file" type="file" (change)="upload()">\n    </form>\n  </div>\n\n  <div style="text-align: center;">\n    <h1>Escolher imagem com o play</h1>\n    <img *ngIf="noticia.url2" src="{{ noticia.url2 }}" style="width:100px;height:100px;" (click)="chooseFile2()">\n    <form ngNoForm>\n      <input id="imgNoticia2" name="file" type="file" (change)="upload2()">\n    </form>\n  </div>\n  <ion-list>\n    <ion-item>\n      <ion-label stacked>Id do curso</ion-label>\n      <ion-input type="text" [(ngModel)]="noticia.id"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Nome do curso</ion-label>\n      <ion-input type="text" [(ngModel)]="noticia.nome"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Destinado á qual tipo de usuário</ion-label>\n      <ion-input type="text" [(ngModel)]="noticia.tipoDeUsuario"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Descrição do curso</ion-label>\n      <ion-textarea [(ngModel)]="noticia.descricao"></ion-textarea>\n    </ion-item>\n    <ion-item>\n      <button ion-button block (click)="save()">Salvar</button>\n    </ion-item>\n  </ion-list>\n  <table>\n    <thead>\n      <th>Foto</th>\n      <th>Foto2</th>\n      <th>Nome</th>\n      <th>Descrição</th>\n      <th>Destinado</th>\n      <th>Ações</th>\n    </thead>\n    <tbody>\n      <tr *ngFor="let noticia of noticias">\n        <td>\n          <img [src]="noticia.url">\n        </td>\n        <td>\n          <img [src]="noticia.url2">\n        </td>\n        <td>{{noticia.nome}}</td>\n        <td>{{noticia.descricao}}</td>\n        <td>{{noticia.tipoDeUsuario}}</td>\n        <td>\n          <a href="#" *ngIf="noticia.status==\'SUCESSO\'" (click)="incluir(noticia.key)">Incluir Módulo</a>\n          <br>\n          <a href="#" *ngIf="noticia.status==\'SUCESSO\'" (click)="delete(noticia.key)">Deletar</a>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</ion-content>'/*ion-inline-end:"/home/guilherme/workspace/apiFP/src/pages/noticias/noticias.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */]) === "function" && _f || Object])
     ], NoticiasPage);
     return NoticiasPage;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=noticias.js.map
@@ -1065,11 +1091,11 @@ var map = {
 		16
 	],
 	"../pages/aulas/aulas.module": [
-		458,
+		457,
 		15
 	],
 	"../pages/curso-complementar/curso-complementar.module": [
-		457,
+		458,
 		14
 	],
 	"../pages/enquetes/enquetes.module": [
@@ -1831,10 +1857,10 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_torcedores_info_torcedores_info__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_incluir_aula_incluir_aula__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_modulos_modulos__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_aulas_aulas__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_curso_complementar_curso_complementar__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_aulas_aulas__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_curso_complementar_curso_complementar__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_aulas_curso_complementar_aulas_curso_complementar__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_incluir_aula_curso_complementar_incluir_aula_curso_complementar__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_incluir_aula_curso_complementar_incluir_aula_curso_complementar__ = __webpack_require__(146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_inserir_usuario_inserir_usuario__ = __webpack_require__(149);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1895,8 +1921,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/aulas-curso-complementar/aulas-curso-complementar.module#AulasCursoComplementarPageModule', name: 'AulasCursoComplementarPage', segment: 'aulas-curso-complementar', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/curso-complementar/curso-complementar.module#CursoComplementarPageModule', name: 'CursoComplementarPage', segment: 'curso-complementar', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/aulas/aulas.module#AulasPageModule', name: 'AulasPage', segment: 'aulas', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/curso-complementar/curso-complementar.module#CursoComplementarPageModule', name: 'CursoComplementarPage', segment: 'curso-complementar', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/enquetes/enquetes.module#EnquetesPageModule', name: 'EnquetesPage', segment: 'enquetes', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/incluir-aula-curso-complementar/incluir-aula-curso-complementar.module#IncluirAulaCursoComplementarPageModule', name: 'IncluirAulaCursoComplementarPage', segment: 'incluir-aula-curso-complementar', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/incluir-aula/incluir-aula.module#IncluirAulaPageModule', name: 'IncluirAulaPage', segment: 'incluir-aula', priority: 'low', defaultHistory: [] },
@@ -1963,8 +1989,8 @@ var AppModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_modulos_modulos__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_aulas_aulas__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_curso_complementar_curso_complementar__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_aulas_aulas__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_curso_complementar_curso_complementar__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_aulas_curso_complementar_aulas_curso_complementar__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_inserir_usuario_inserir_usuario__ = __webpack_require__(149);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {

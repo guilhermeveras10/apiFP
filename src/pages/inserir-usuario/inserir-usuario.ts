@@ -46,12 +46,23 @@ export class InserirUsuarioPage {
           this.upload();
           firebase.database().ref('usuarios/'+firebase.auth().currentUser.uid).set({
             uid: firebase.auth().currentUser.uid,
-            foto: this.user.foto,
+            url: this.user.foto,
             email: this.user.email,
             password: this.user.senha,
             nome: this.user.nome,
             professor_ou_aluno: this.user.professor_ou_aluno,
-            tipo_de_usuario: this.user.tipo_de_usuario
+            tipo_de_usuario: this.user.tipo_de_usuario,
+            qual_papel: 'usuarios'
+          });
+          firebase.database().ref('tudo_para_search/' + firebase.auth().currentUser.uid).set({
+            uid: firebase.auth().currentUser.uid,
+            url: this.user.foto,
+            email: this.user.email,
+            password: this.user.senha,
+            nome: this.user.nome,
+            professor_ou_aluno: this.user.professor_ou_aluno,
+            tipo_de_usuario: this.user.tipo_de_usuario,
+            qual_papel: 'usuarios'
           }).then(() => {
             resolve({ success: true });
             }).catch((err) => {

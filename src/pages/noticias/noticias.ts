@@ -30,8 +30,12 @@ export class NoticiasPage {
   save() {
     this.upload();
     this.upload2();
-    firebase.database().ref('cursoPrincipal/' + this.noticia.id).update(this.noticia).then(data => {
-      this.displayToast("Upado com sucesso")
+    firebase.database().ref('curso_principal/' + this.noticia.id).update(this.noticia).then(data => {
+      firebase.database().ref('search_cursos/' + this.noticia.id).update(this.noticia).then(data => {
+        firebase.database().ref('tudo_para_search/' + this.noticia.id).update(this.noticia).then(data => {
+          this.displayToast("Upado com sucesso")
+        });
+      });
     });
   }
 
@@ -67,12 +71,13 @@ export class NoticiasPage {
         this.noticia.url = snapshot.downloadURL;
         this.noticia.status = 'SUCESSO';
         this.noticia.timestamp = firebase.database.ServerValue.TIMESTAMP;
+        this.noticia.qual_papel = 'curso_principal';
       });
     }
   }
 
   getAllNoticias() {
-    firebase.database().ref('cursoPrincipal').on('value', requests => {
+    firebase.database().ref('curso_principal').on('value', requests => {
       let tmp = [];
       requests.forEach(request => {
         tmp.push({ key: request.key, ...request.val() });
@@ -87,7 +92,9 @@ export class NoticiasPage {
   }
 
   delete(id){
-    firebase.database().ref('cursoPrincipal/'+id).remove();
+    firebase.database().ref('curso_principal/'+id).remove();
+    firebase.database().ref('search_cursos/'+id).remove();
+    firebase.database().ref('tudo_para_search/' + id).remove();
   }
 
   incluir(key){

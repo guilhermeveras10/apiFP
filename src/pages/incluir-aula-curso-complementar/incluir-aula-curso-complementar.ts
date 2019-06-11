@@ -27,7 +27,7 @@ export class IncluirAulaCursoComplementarPage {
     this.getTorcedorInfo();
   }
   getTorcedorInfo() {
-    firebase.database().ref('cursoComplementar/' + this.torcedorKey).on('value', snapshot => {
+    firebase.database().ref('curso_complementar/' + this.torcedorKey).on('value', snapshot => {
       this.torcedor = snapshot.val();
     })
   }
@@ -55,8 +55,8 @@ export class IncluirAulaCursoComplementarPage {
     this.noticia.status = 'SUCESSO';
     this.noticia.timestamp = firebase.database.ServerValue.TIMESTAMP;
     this.noticia.id_do_curso = this.torcedorKey;
-    firebase.database().ref('aulaCursoComplementarApi/' + this.noticia.titulo).update(this.noticia).then(data => {
-      firebase.database().ref('aulaCursoComplementar/' + this.torcedorKey + '/' + this.noticia.titulo).update(this.noticia).then(data => {
+    firebase.database().ref('aula_curso_complementar_api/' + this.noticia.titulo).update(this.noticia).then(data => {
+      firebase.database().ref('aula_curso_complementar/' + this.torcedorKey + '/' + this.noticia.titulo).update(this.noticia).then(data => {
         this.displayToast("Upado com sucesso")
       });
     });
