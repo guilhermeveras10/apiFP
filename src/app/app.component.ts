@@ -11,6 +11,11 @@ import { AulasPage } from '../pages/aulas/aulas';
 import { CursoComplementarPage } from '../pages/curso-complementar/curso-complementar';
 import { AulasCursoComplementarPage } from '../pages/aulas-curso-complementar/aulas-curso-complementar';
 import { InserirUsuarioPage } from '../pages/inserir-usuario/inserir-usuario';
+import { GruposPage } from '../pages/grupos/grupos';
+import { NotificacoesPage } from '../pages/notificacoes/notificacoes';
+import { FichaFinanceiraPage } from '../pages/ficha-financeira/ficha-financeira';
+import { AjudaPage } from '../pages/ajuda/ajuda';
+import { NotasPage } from '../pages/notas/notas';
 
 @Component({
   templateUrl: 'app.html'
@@ -33,7 +38,12 @@ export class MyApp {
       { title: 'Aulas curso principal', component: AulasPage },
       { title: 'Curso complementar', component: CursoComplementarPage },
       { title: 'Aula curso complementar', component: AulasCursoComplementarPage },
-      { title: 'Inserir usuário', component: InserirUsuarioPage }
+      { title: 'Inserir usuário', component: InserirUsuarioPage },
+      { title: 'Grupos', component: GruposPage },
+      { title: 'Notificações', component: NotificacoesPage },
+      { title: 'Ficha financeira', component: FichaFinanceiraPage },
+      { title: 'Ajuda', component: AjudaPage },
+      { title: 'Notas', component: NotasPage }
     ];
   }
 

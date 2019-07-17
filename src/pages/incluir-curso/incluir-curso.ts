@@ -34,10 +34,13 @@ export class IncluirCursoPage {
 
   save() {
     this.upload();
+    this.noticia.id = this.noticia.etapa
     firebase.database().ref('modulos_curso_principal/' + this.torcedorKey + '/' + this.noticia.etapa).update(this.noticia).then(data => {
-    firebase.database().ref('modulos_curso_principal_view_api/' + this.noticia.etapa).update(this.noticia).then(data => {
-      this.displayToast("Upado com sucesso")
-    });
+      firebase.database().ref('modulos_curso_principal_view_api/' + this.noticia.etapa).update(this.noticia).then(data => {
+        firebase.database().ref('notificacoes/' + this.noticia.etapa).update(this.noticia).then(data => {
+          this.displayToast("Upado com sucesso")
+        });
+      });
     });
   }
 

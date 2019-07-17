@@ -55,9 +55,12 @@ export class IncluirAulaPage {
     this.noticia.timestamp = firebase.database.ServerValue.TIMESTAMP;
     this.noticia.id_do_modulo = this.torcedorKey;
     this.noticia.etapa = this.torcedor.etapa;
+    this.noticia.id = this.noticia.aula;
     firebase.database().ref('aulas_curso_principal/' + this.torcedor.etapa + '/' + this.noticia.aula).update(this.noticia).then(data => {
       firebase.database().ref('aulas_curso_principal_premium_api/' + this.noticia.aula).update(this.noticia).then(data => {
-        this.displayToast("Upado com sucesso")
+        firebase.database().ref('notificacoes/' + this.noticia.aula).update(this.noticia).then(data => {
+          this.displayToast("Upado com sucesso")
+        });
       });
     });
   }

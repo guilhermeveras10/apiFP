@@ -19,11 +19,21 @@ import { CursoComplementarPage } from '../pages/curso-complementar/curso-complem
 import { AulasCursoComplementarPage } from '../pages/aulas-curso-complementar/aulas-curso-complementar';
 import { IncluirAulaCursoComplementarPage } from '../pages/incluir-aula-curso-complementar/incluir-aula-curso-complementar';
 import { InserirUsuarioPage } from '../pages/inserir-usuario/inserir-usuario';
+import { GruposPage } from '../pages/grupos/grupos';
+import { NotificacoesPage } from '../pages/notificacoes/notificacoes';
+import { FichaFinanceiraPage } from '../pages/ficha-financeira/ficha-financeira';
+import { AjudaPage } from '../pages/ajuda/ajuda';
+import { NotasPage } from '../pages/notas/notas';
 
 @NgModule({
   declarations: [
     MyApp,
     AulasPage,
+    NotasPage,
+    AjudaPage,
+    NotificacoesPage,
+    GruposPage,
+    FichaFinanceiraPage,
     InserirUsuarioPage,
     AulasCursoComplementarPage,
     IncluirAulaCursoComplementarPage,
@@ -51,6 +61,11 @@ import { InserirUsuarioPage } from '../pages/inserir-usuario/inserir-usuario';
     TorcedoresPage,
     IncluirCursoPage,
     IncluirAulaPage,
+    NotasPage,
+    AjudaPage,
+    FichaFinanceiraPage,
+    NotificacoesPage,
+    GruposPage,
     ModulosPage,
     NoticiasPage
   ],

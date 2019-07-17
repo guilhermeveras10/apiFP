@@ -33,7 +33,9 @@ export class NoticiasPage {
     firebase.database().ref('curso_principal/' + this.noticia.id).update(this.noticia).then(data => {
       firebase.database().ref('search_cursos/' + this.noticia.id).update(this.noticia).then(data => {
         firebase.database().ref('tudo_para_search/' + this.noticia.id).update(this.noticia).then(data => {
-          this.displayToast("Upado com sucesso")
+          firebase.database().ref('notificacoes/' + this.noticia.id).update(this.noticia).then(data => {
+            this.displayToast("Upado com sucesso")
+          });
         });
       });
     });
